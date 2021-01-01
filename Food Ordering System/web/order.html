@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>OrderServlet</title>
+        <link rel="stylesheet" href="style.css">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Exo:wght@600&family=Lobster&family=Raleway:ital,wght@1,700&display=swap"
+            rel="stylesheet">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@1,700&family=Baloo+Paaji+2:wght@500&family=Dancing+Script:wght@562&family=Exo:wght@600&family=Lobster&family=Raleway:ital,wght@1,700&display=swap"
+            rel="stylesheet">
+
+        <script type="text/javascript">
+            function selectionOperation(id) {
+                var choice = document.getElementById(id);
+                var inHTML = "";
+
+                inHTML +=
+                        `<div id="selection">
+                <label class="meal-label">
+                    Select your Meal (Any meal 3 JOD)
+                </label>
+                <select id="itemSelection" name="itemSelection" class="select-css"
+                   onchange= "populateOperation(\'itemSelection\',\'customization\')">
+                    <option value="Empty" selected></option>
+                    <option value="Burger">Burger</option>
+                    <option value="Pizza">Pizza</option>
+                    <option value="Pasta">Pasta</option>
+                </select>
+            </div>`;
+                // '<p> Select Meal (Any meal 3 JOD): ' +
+                // '<select id="itemSelection" name="itemSelection" onchange= "populateOperation(\'itemSelection\',\'customization\')">' +
+                // '<option value="Empty" selected></option>' +
+                // '<option value="Burger">Burger</option>' +
+                // '<option value="Pizza" >Pizza</option>' +
+                // '<option value="Pasta">Pasta</option>' +
+                // '</select> </p>';
+
+                choice.innerHTML = inHTML;
+            }
+
+            function populateOperation(id1, id2) {
+                var choice = document.getElementById(id1);
+                var customs = document.getElementById(id2);
+                customs.innerHTML = "";
+                var inHTML = "";
+
+                if (choice.value == "Burger") {
+                    inHTML =
+                            `
+                   <div class="meal-type">
+                <label class="meal-label">
+                    Burger Type:
+                </label>
+                <input class="checkbox-tools" type="radio" name="type" id="Beef" value='Beef' checked>
+                <label class="for-checkbox-tools" for="Beef">
+                    Beef Burger (0.5 JOD)
+                </label>
+
+                <input class="checkbox-tools" type="radio" name="type" id="Chicken" value='Chicken'>
+                <label class="for-checkbox-tools" for="Chicken">
+                    Chicken Burger (0.0 JOD)
+                </label>
+            </div>
+
+            <div class="meal-type">
+                <label class="meal-label">
+                    Add ons:
+                </label>
+                <input class="checkbox-tools" type='checkbox' name='addOns' value='Cheese' id='Cheese'>
+                <label class="for-checkbox-tools" for="Cheese">
+                    Cheese (0.25 JOD)
+                </label>
+
+                <input class="checkbox-tools" type='checkbox' name='addOns' value='Lettuce' id='Lettuce'>
+                <label class="for-checkbox-tools" for="Lettuce">
+                    Lettuce (0.0 JOD)
+                </label>
+                <input class="checkbox-tools" type='checkbox' name='addOns' value='Tomatoes' id='Tomatoes'>
+                <label class="for-checkbox-tools" for="Tomatoes">
+                    Tomatoes (0.0 JOD)
+                </label>
+            </div>
+
+            <div>
+                <label class="meal-label">
+                    Select meat weight (adds 0.5 JOD for every extra 50g)
+                </label>
+                <select class="select-css" id='meatSize' name='meatSize'>
+                    <option value='100' selected>100g</option>
+                    <option value='150'>150g</option>
+                    <option value='200'>200g</option>
+                    <option value='250'>250g</option>
+                </select>
+            </div>`;
+
+                    // inHTML +=
+                    //     "<p>Burger Type: " +
+                    //     "<input type='radio' id='Beef' name='type' value='Beef' checked> Beef Burger (0.5 JOD)" +
+                    //     "<input type='radio' id='Chicken' name='type' value='Chicken'> Chicken Burger (0.0 JOD)" +
+                    //     " <br> <p>";
+
+                    // inHTML +=
+                    //     "<p>Add ons:" +
+                    //     "<input type='checkbox' name='addOns' value='Cheese' id='Cheese'> Cheese (0.25 JOD)	" +
+                    //     "<input type='checkbox' name='addOns' value='Lettuce' id='Lettuce'> Lettuce (0.0 JOD) 	" +
+                    //     "<input type='checkbox' name='addOns' value='Tomatoes' id='Tomatoes'> Tomatoes (0.0 JOD) " +
+                    //     "<br> <p>";
+
+                    // inHTML +=
+                    //     "<p>Select meat weight (adds 0.5 JOD for every extra 50g): " +
+                    //     "<select id='meatSize' name='meatSize'>" +
+                    //     "<option value='100' selected>100g</option>" +
+                    //     "<option value='150'>150g</option>" +
+                    //     "<option value='200'>200g</option>" +
+                    //     "<option value='250'>250g</option>" +
+                    //     " <br> <p>";
+
+                    customs.innerHTML = inHTML;
+                } else if (choice.value == "Pizza") {
+                    inHTML +=
+                            `
+                    <div class="meal-type">
+                <label class="meal-label">
+                    Pizza Type:
+                </label>
+                <input class="checkbox-tools" type="radio" name="type" id="Italian" value='Italian' checked>
+                <label class="for-checkbox-tools" for="Italian">
+                    Italian
+                </label>
+                <input class="checkbox-tools" type="radio" name="type" id="Margherita" value='Margherita'>
+                <label class="for-checkbox-tools" for="Margherita">
+                    Margherita
+                </label>
+                <input class="checkbox-tools" type="radio" name="type" id="Pepperoni" value='Pepperoni'>
+                <label class="for-checkbox-tools" for="Pepperoni">
+                    Pepperoni
+                </label>
+            </div>`;
+                    // "<p>Pizza Type: " +
+                    // "<input type='radio' id='Italian' name='type' value='Italian' checked> Italian	" +
+                    // "<input type='radio' id='Margherita' name='type' value='Margherita' > Margherita	" +
+                    // "<input type='radio' id='Pepperoni' name='type' value='Pepperoni' > Pepperoni	" +
+                    // " <br> <p>";
+
+                    inHTML +=
+                            `
+                    <div>
+                <label class="meal-label">
+                    Select pizza size (Adds 1 JOD for each size):
+                </label>
+                <select class="select-css" id='pizzaSize' name='pizzaSize'>
+                    <option value="Small" selected>Small (8")</option>
+                    <option value="Medium">Medium (10")</option>
+                    <option value="Large">Large (12")</option>
+                </select>
+            </div>`;
+
+                    // "<p>Select pizza size (Adds 1 JOD for each size): " +
+                    // "<select id='pizzaSize' name='pizzaSize'>" +
+                    // '<option value="Small" selected>Small (8")</option>' +
+                    // '<option value="Medium">Medium (10")</option>' +
+                    // '<option value="Large">Large (12")</option>' +
+                    // " <br> <p>";
+
+                    customs.innerHTML = inHTML;
+                } else if (choice.value == "Pasta") {
+                    inHTML +=
+                            `
+                <div class="meal-type">
+                <label class="meal-label">
+                    Pasta Type:
+                </label>
+                <input class="checkbox-tools" type="radio" name="type" id="Spagitti" value='Spagitti' checked>
+                <label class="for-checkbox-tools" for="Spagitti">
+                    Spagitti
+                </label>
+
+                <input class="checkbox-tools" type="radio" name="type" id="Panneni" value='Panneni'>
+                <label class="for-checkbox-tools" for="Panneni">
+                    Panneni
+                </label>
+            </div>`;
+                    // "<p>Spagitti Type: " +
+                    // "<input type='radio' id='Spagitti' name='type' value='Spagitti' checked> Spagitti	" +
+                    // "<input type='radio' id='Panneni' name='type' value='Panneni'> Panneni" +
+                    // " <br> <p>";
+
+                    inHTML +=
+                            `
+                <div class="meal-type">
+                <label class="meal-label">
+                    Burger Type:
+                </label>
+                <input class="checkbox-tools" type="radio" name="meatType" id="Beef" value='Beef' checked>
+                <label class="for-checkbox-tools" for="Beef">
+                    Beef (0.5 JOD)
+                </label>
+
+                <input class="checkbox-tools" type="radio" name="meatType" id="Chicken" value='Chicken'>
+                <label class="for-checkbox-tools" for="Chicken">
+                    Chicken
+                </label>
+            </div>
+                `;
+                    // "<p>Meat Type: " +
+                    // "<input type='radio' id='Beef' name='meatType' value='Beef' checked> Beef (0.5 JOD)	" +
+                    // "<input type='radio' id='Chicken' name='meatType' value='Chicken'> Chicken " +
+                    // " <br> <p>";
+
+                    customs.innerHTML = inHTML;
+                }
+
+
+
+            }
+
+            function orderInfo(orderId) {
+
+                var price = 3;
+
+                var order = document.getElementById(orderId);
+
+                var inHTML = "<table border='1'> " +
+                        "<tr> <td> Meal </td> <td> Details </td> <td> Price </td> </tr> " +
+                        "<tr>" +
+                        "<td><input type='text' name='mealType' value=" + itemSelection.value + " readonly>" +
+                        "</td>";
+
+                if (itemSelection.value == "Burger") {
+                    inHTML += "<td  id='mealDetails'>";
+
+
+                    if (Beef.checked) {
+                        inHTML += "<input type='text' name='mealDetails' size='50' value='Beef";
+                        price += 0.5;
+                    } else
+                        inHTML += "<input type='text' name='mealDetails' size='50' value='Chicken";
+
+                    var MeatSize = meatSize.options[meatSize.selectedIndex].value;
+                    inHTML += "," + MeatSize;
+                    if (MeatSize == '150')
+                        price += 0.5;
+                    else if (MeatSize == '200')
+                        price += 1;
+                    else if (MeatSize == '250')
+                        price += 1.5;
+
+                    if (Cheese.checked) {
+                        inHTML += ",With Cheese";
+                        price += 0.25;
+                    }
+                    if (Lettuce.checked)
+                        inHTML += ",With Lettuce";
+                    if (Tomatoes.checked)
+                        inHTML += ",With Tomatoes";
+
+                    inHTML += "'readonly>";
+                    inHTML += "</td>";
+                    inHTML += "<td><input type='text' name='mealPrice' value='" + price + "'readonly></td></tr>";
+                    order.innerHTML += inHTML;
+                } else if (itemSelection.value == "Pizza") {
+                    inHTML += "<td  id='mealDetails'>";
+
+                    if (Italian.checked)
+                        inHTML += "<input type='text' name='mealDetails' size='50' value='Italian";
+                    else if (Pepperoni.checked)
+                        inHTML += "<input type='text' name='mealDetails' size='50' value='Pepperoni";
+                    else
+                        inHTML += "<input type='text' name='mealDetails' size='50' value='Margherita";
+
+
+                    inHTML += "," + pizzaSize.value;
+                    if (pizzaSize.value == 'Medium')
+                        price += 1;
+                    else if (pizzaSize.value == 'Large')
+                        price += 2;
+
+                    inHTML += "'readonly>";
+                    inHTML += "</td>";
+                    inHTML += "<td><input type='text' name='mealPrice' value='" + price + "'readonly></td></tr>";
+                    order.innerHTML += inHTML;
+                } else if (itemSelection.value == "Pasta") {
+                    inHTML += "<td  id='mealDetails'>";
+
+                    if (Spagitti.checked)
+                        inHTML += "<input type='text' name='mealDetails' size='50' value='Spagitti";
+                    else if (Panneni.checked)
+                        inHTML += "<input type='text' name='mealDetails' size='50' value='Panneni";
+
+                    if (Beef.checked) {
+                        inHTML += ",Beef";
+                        price += 0.5;
+                    } else
+                        inHTML += ",Chicken";
+
+
+                    inHTML += "'readonly>";
+                    inHTML += "</td>";
+                    inHTML += "<td><input type='text' name='mealPrice' value='" + price + "'readonly></td></tr>";
+                    order.innerHTML += inHTML;
+                }
+
+            }
+        </script>
+    </head>
+    <body>
+        <a href="index.html"><input class="btn-form__logout--menu" type="button" value="Log-out"></a>
+        <div class="menu">
+            <h1 class="title-1">
+                Menu
+            </h1>
+            <div id="selection"  >
+                <label class="meal-label">
+                    Select your Meal (Any meal 3 JOD)
+                </label>
+                <select id="itemSelection" name="itemSelection" class="select-css" onchange= "populateOperation('itemSelection', 'customization')">
+                    <option value="Empty" selected></option>
+                    <option value="Burger">Burger</option>
+                    <option value="Pizza" >Pizza</option>
+                    <option value="Pasta">Pasta</option>
+                </select>
+            </div>
+
+            <div id="customization"></div>
+
+            <div>
+                <button class="btn-form" type="button" onclick="orderInfo('orderId')">Add Meal To The Order</button>
+            </div>
+            <br>
+            <form method="post" action="OrderServlet">
+                <div style="text-align: center;">
+                    <input class="btn-form" type="submit" name="button" value="Place Order">
+                    <input class="btn-form" type="submit" name="button" value="View My Orders">
+                    <input class="btn-form" type="submit" name="button" value="View My Past Orders">
+                    <input class="btn-form" type="submit" name="button" value="View All Users' Orders">
+                </div>
+                <br>
+                <div> 
+                    <div class="order-id">
+                        Current Order:
+                    </div>
+                    <div id="orderId"></div>
+                </div>
+            </form>
+            <!--
+            <div>
+                <input type="submit" formaction="ViewAllOrders" value="View All Users' Orders">
+            </div>
+            <br>
+            -->
+
+        </div>
+    </body>
+</html>
